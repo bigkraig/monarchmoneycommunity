@@ -1142,13 +1142,13 @@ class MonarchMoney(object):
         :param end_date:
             the latest date to get budget data, in "yyyy-mm-dd" format (default: next month)
         :param use_legacy_goals:
-            Set True to return a list of monthly budget set aside for goals (default: no list)
+            Deprecated; legacy goals are no longer supported by the API.
         :param use_v2_goals:
             Set True to return a list of monthly budget set aside for version 2 goals (default list)
         """
         query = gql(
             """
-          query GetJointPlanningData($startDate: Date!, $endDate: Date!, $useLegacyGoals: Boolean!, $useV2Goals: Boolean!) {
+          query GetJointPlanningData($startDate: Date!, $endDate: Date!, $useV2Goals: Boolean!) {
             budgetData(startMonth: $startDate, endMonth: $endDate) {
               monthlyAmountsByCategory {
                 category {
@@ -1265,29 +1265,6 @@ class MonarchMoney(object):
               type
               __typename
             }
-            goals @include(if: $useLegacyGoals) {
-              id
-              name
-              completedAt
-              targetDate
-              __typename
-            }
-            goalMonthlyContributions(startDate: $startDate, endDate: $endDate) @include(if: $useLegacyGoals) {
-              mount: monthlyContribution
-              startDate
-              goalId
-              __typename
-            }
-            goalPlannedContributions(startDate: $startDate, endDate: $endDate) @include(if: $useLegacyGoals) {
-              id
-              amount
-              startDate
-              goal {
-                id
-                __typename
-              }
-              __typename
-            }
             goalsV2 @include(if: $useV2Goals) {
               id
               name
@@ -1317,7 +1294,6 @@ class MonarchMoney(object):
         variables = {
             "startDate": start_date,
             "endDate": end_date,
-            "useLegacyGoals": use_legacy_goals,
             "useV2Goals": use_v2_goals,
         }
 
