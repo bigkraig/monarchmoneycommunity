@@ -161,7 +161,14 @@ class MonarchMoney(object):
         """
         Retrieves the response from the server for a given URL and form data.
         """
-        async with ClientSession(headers=self._headers) as session:
+
+        # Remove Accept and Content-Type headers because the Monarch upload endpoint
+        # rejects these values and returns an "Unsupported Media Type" error.
+        headers = self._headers.copy()
+        headers.pop("Accept", None)
+        headers.pop("Content-Type", None)
+
+        async with ClientSession(headers=headers) as session:
             resp = await session.post(url, data=data)
             if resp.status != 200:
                 raise RequestFailedException(f"HTTP Code {resp.status}: {resp.reason}")
