@@ -7,14 +7,12 @@ import os
 import pickle
 import time
 from dataclasses import dataclass
-from datetime import datetime
 from io import StringIO
 from datetime import datetime, date, timedelta
 from typing import Any, Dict, List, Optional, Union
 
 import oathtool
 from aiohttp import ClientSession, FormData
-from aiohttp.client import DEFAULT_TIMEOUT
 from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 from graphql import DocumentNode
