@@ -1,5 +1,5 @@
 <p align="center">
-  <img src=".github/assets/monarch-logo.svg" alt="Monarch Money Community logo" style="background:#ffffff; padding:10px 14px; border-radius:6px;" />
+  <img src=".github/assets/monarch-logo.svg" alt="Monarch Money Community logo" />
 </p>
 
 <blockquote style="border-left:4px solid #f1c40f; margin:16px 0; padding:8px 12px;">
