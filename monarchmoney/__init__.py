@@ -10,6 +10,7 @@ from .monarchmoney import (
     MonarchMoney,
     RequireMFAException,
     RequestFailedException,
+    BalanceHistoryRow,
 )
 
 __version__ = "1.1.0"
