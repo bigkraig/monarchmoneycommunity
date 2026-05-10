@@ -37,7 +37,7 @@ class BalanceHistoryRow:
 
 
 class MonarchMoneyEndpoints(object):
-    BASE_URL = "https://api.monarch.com"
+    BASE_URL = "https://api.monarchmoney.com"
     CLOUDINARY_BASE_URL = "https://api.cloudinary.com"
 
     @classmethod
